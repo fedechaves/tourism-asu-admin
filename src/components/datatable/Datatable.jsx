@@ -6,8 +6,13 @@ import useFetch from "../../hooks/useFetch"
 
 
 const Datatable = () => {
-
-  const {data, loading, error} = useFetch("http://localhost:2121/api/users")
+  
+  const { data, loading, error } = useFetch( "http://localhost:2121/users",{
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer '+ localStorage.getItem('access_token')}
+  })
+    
 
   const handleDelete = (id) => {
     // setData(data.filter((item) => item.id !== id));
