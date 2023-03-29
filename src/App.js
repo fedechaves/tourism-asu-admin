@@ -28,6 +28,7 @@ function App() {
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
+
           <Route path="/">
             <Route path="login" element={<Login />} />
             <Route 
@@ -35,11 +36,19 @@ function App() {
             element={
               <ProtectedRoute> 
               <Home /> 
-              </ProtectedRoute>} />
+              </ProtectedRoute>
+            } 
+            />
+
             <Route path="users">
-              <Route index element={<ProtectedRoute> 
-              <List/> 
-              </ProtectedRoute>} />
+              <Route 
+                index 
+                element={
+                <ProtectedRoute> 
+                  <List/> 
+                </ProtectedRoute>
+              } 
+              />
               <Route path=":userId" element={<ProtectedRoute> 
               <Single /> 
               </ProtectedRoute>} />

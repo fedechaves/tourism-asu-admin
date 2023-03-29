@@ -2,17 +2,22 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import useFetch from "../../hooks/useFetch"
-import axios from "axios";
+import useFetch from "../../hooks/useFetch";
 
 
 const Datatable = () => {
-  
-  const { data, loading, error } = useFetch( "http://localhost:2121/api/users",{
-      method: 'GET',
-      headers: { Authorization: 'Bearer '+ localStorage.getItem('_id')}
-  }
-)
+  let headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+
+  const { data, loading, error } = useFetch("http://localhost:2121/api/users",
+  {
+    method: 'GET',
+    mode: 'same-origin',
+    redirect: 'follow',
+    credentials: 'include', // Don't forget to specify this if you need cookies
+    headers: { token:"Bearer "+   localStorage.getItem("token")},
+})
     
 
   const handleDelete = (id) => {
