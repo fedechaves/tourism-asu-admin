@@ -3,15 +3,16 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import useFetch from "../../hooks/useFetch"
+import axios from "axios";
 
 
 const Datatable = () => {
   
-  const { data, loading, error } = useFetch( "http://localhost:2121/users",{
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer '+ localStorage.getItem('access_token')}
-  })
+  const { data, loading, error } = useFetch( "http://localhost:2121/api/users",{
+      method: 'GET',
+      headers: { Authorization: 'Bearer '+ localStorage.getItem('_id')}
+  }
+)
     
 
   const handleDelete = (id) => {
