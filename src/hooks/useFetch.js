@@ -7,9 +7,6 @@ const useFetch = (url) => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
     const fetchData = async () => {
       setLoading(true);
       try {

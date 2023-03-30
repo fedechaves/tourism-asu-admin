@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
-import Cookies from 'universal-cookie';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -16,7 +15,6 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleChange = (e) => {
-    console.log(e)
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }))
   };
 
@@ -25,16 +23,10 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("http://localhost:2121/api/auth/login", credentials);
-      if(res.data.isAdmin){
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-
-        navigate("/");
-      }else {
-        dispatch({ type: "LOGIN_FAILURE", 
-                  payload: {message: "you are not allowed"} 
-                });
-      }
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      navigate("/");
     } catch (err) {
+      console.log("error:", err.response.data);
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
