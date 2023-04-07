@@ -12,7 +12,6 @@ const Datatable = () => {
 
   const { data, loading, error } = useFetch("http://localhost:2121/api/users")
 
-  console.log(JSON.parse(localStorage.getItem("user")).token)
     
 
   const handleDelete = (id) => {
