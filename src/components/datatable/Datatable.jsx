@@ -10,14 +10,9 @@ const Datatable = () => {
   headers.append('Content-Type', 'application/json');
   headers.append('Accept', 'application/json');
 
-  const { data, loading, error } = useFetch("http://localhost:2121/api/users",
-  {
-    method: 'GET',
-    mode: 'same-origin',
-    redirect: 'follow',
-    credentials: 'include', // Don't forget to specify this if you need cookies
-    headers: { token:"Bearer "+   localStorage.getItem("token")},
-})
+  const { data, loading, error } = useFetch("http://localhost:2121/api/users")
+
+  console.log(JSON.parse(localStorage.getItem("user")).token)
     
 
   const handleDelete = (id) => {

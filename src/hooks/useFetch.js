@@ -11,12 +11,9 @@ const useFetch = (url) => {
       setLoading(true);
       try {
         const res = await axios.get(url, {
-          method: 'GET',
-          mode: 'same-origin',
-          redirect: 'follow',
-          credentials: 'include', // Don't forget to specify this if you need cookies
-          headers: { token:"Bearer "+   localStorage.getItem("token")}
-      });
+          headers: { 
+            authorization: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
+      }});
         setData(res.data);
       } catch (err) {
         setError(err);
