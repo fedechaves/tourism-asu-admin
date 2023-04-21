@@ -37,11 +37,12 @@ export const userColumns = [
 ];
 
 export const hotelColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "_id", 
+    headerName: "ID", width: 150 },
   {
     field: "name",
     headerName: "Name",
-    width: 100,
+    width: 150,
   },
   {
     field: "type",
